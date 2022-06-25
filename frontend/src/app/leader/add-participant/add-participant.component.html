@@ -1,0 +1,37 @@
+<div class="form-wrapper">
+    <form>
+        <div class="form-field">
+            Firstname:<br>
+            <input type="text" name="firstname" [(ngModel)]="firstname" required>
+        </div>
+        <div class="form-field">
+            Lastname:<br>
+            <input type="text" name="lastname" [(ngModel)]="lastname" required>
+        </div>
+        <div class="form-field">
+            Sport:<br>
+            <select name="sport" [(ngModel)]="sport" (change)="loadDisciplines()" required>
+                <option value="" hidden selected>Select sport..</option>
+                <option *ngFor='let sport of allSports' value="{{sport.name}}">{{sport.name}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Discipline:<br>
+            <select name="discipline" [(ngModel)]="discipline">
+                <option value="" hidden selected>Select discipline..</option>
+                <option *ngFor='let d of disciplines' value="{{d.discipline}}">{{d.discipline}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Gender:<br>
+            <input type="radio" name="gender" value="male" [(ngModel)]="gender" required> Male
+            <input type="radio" name="gender" value="female" [(ngModel)]="gender" required> Female
+        </div>
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="ADD" (click)="addParticipant()">
+        </div>
+        <p style="color: red; text-align: center; padding-top: 20px;">{{message}}</p>
+    </form>
+</div>
+
+

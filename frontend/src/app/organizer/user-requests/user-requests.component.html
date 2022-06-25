@@ -1,0 +1,27 @@
+<h1 style="text-align: center;">User Requests</h1>
+<p>{{message}}</p>
+<table id="users">
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Country</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Approve</th>
+    </tr>
+    <tr *ngFor='let user of users'>
+        <td>{{user.firstname}} {{user.lastname}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.country}}</td>
+        <td>{{user.type}}</td>
+        <td>{{user.status}}</td>
+        <td>
+            <button mat-icon-button class="done-icon" *ngIf='user.status == "waiting"' (click)="approveUser(user)">
+                <mat-icon [ngStyle]="{'color':'#676767'}">done</mat-icon>
+            </button>
+            <button mat-icon-button class="done-icon" *ngIf='user.status == "waiting"' (click)="deleteUser(user)">
+                <mat-icon [ngStyle]="{'color':'#676767'}">delete</mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>

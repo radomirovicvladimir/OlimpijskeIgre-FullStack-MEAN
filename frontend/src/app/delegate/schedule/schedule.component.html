@@ -1,0 +1,80 @@
+<h1 style="text-align: center;">Schedules</h1>
+<p *ngIf='competitions.length == 0' style="text-align: center;">No competitions.</p>
+<div *ngIf='c'>
+    <div class="line"></div>
+    <h2 style="text-align: center;">{{c.sport}}, {{c.discipline}}</h2>
+    <!-- <p style="text-align: center;">{{c.location}}: {{prettyDate(c.startDate)}}-{{prettyDate(c.endDate)}}</p> -->
+    <div class="form-wrapper" *ngIf='c.form.type=="all"'>
+        <form *ngIf='c.hasSchedule == false && c.currentRound > 0'>
+            <div class="form-field">
+                <table>
+                    <tr style="text-align: center;">
+                        <td colspan="2">{{prettyDate(c.startDate)}} - {{prettyDate(c.endDate)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date & Time:</td>
+                        <td><input type="datetime-local" [(ngModel)]="date" name="date"></td>
+                    </tr>
+                </table>
+                <div style="text-align: center;">
+                    <input type="submit" class="btn" value="SET SCHEDULE" (click)="setSchedule(c)">
+                </div>
+            </div>
+        </form>
+        <p *ngIf='c.hasSchedule == true'>Competition schedule set. <a routerLink="/delegate/competitions">Input
+            results</a></p>
+    </div>
+    <p *ngIf='c.currentRound == 0' style="text-align: center;">Competition finished.</p>
+    <div class="form-wrapper" *ngIf='c.form.type=="one-on-one"'>
+        <form *ngIf='c.hasSchedule == false'>
+            <div class="form-field">
+                Groups:<br>
+                <select name="selectedGroup" [(ngModel)]="selectedGroup" (change)='groupSelected(c)'>
+                    <option value="" hidden selected>Select group...</option>
+                    <option *ngFor='let g of c.groups; index as i' value="{{i}}">{{g.first.name}} - {{g.second.name}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf='group && !group.schedule'>
+                <table>
+                    <tr>
+                        <td>Date & Time:</td>
+                        <td><input type="datetime-local" [(ngModel)]="groupDate" name="groupDate"></td>
+                    </tr>
+                    <tr>
+                        <td>Location:</td>
+                        <td>
+                            <select name="groupLocation" [(ngModel)]="groupLocation">
+                                <option value="" hidden selected>Select location...</option>
+                                <option *ngFor='let loc of c.locations' value="{{loc}}}">{{loc}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align: center;">
+                    <input type="submit" class="btn" value="SET SCHEDULE" (click)="setSchedule(c)">
+                </div>
+            </div>
+            <p *ngIf='group && group.schedule'>Group schedule saved.</p>
+            <!-- <p style="color:red; text-align: center;">{{message}}</p> -->
+        </form>
+        <p *ngIf='c.hasSchedule == true'>Competition schedule set. <a routerLink="/delegate/competitions">Input
+                results</a></p>
+    </div>
+    <p style="color:red; text-align: center;">{{message}}</p>
+    <table style="margin: 0 auto; width: 100%; text-align: center;">
+        <tr>
+            <td>
+                <button mat-button (click)="prev()" disabled='{{currIndex == 0}}' >
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </td>
+            <td>
+                <button mat-button (click)="next()" disabled='{{currIndex == competitions.length - 1}}'>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="line"></div>

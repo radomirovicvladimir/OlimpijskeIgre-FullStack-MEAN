@@ -1,0 +1,102 @@
+:host {
+    display: block;
+    width: 100%;
+    margin: auto;
+    padding-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-result {
+    margin-top: 50px;
+    padding-bottom: 80px;
+}
+
+
+.form-field {
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 5px 0;
+    color: #898989;
+}
+
+input[type=text], input[type=date], select {
+    padding: 12px 0px;
+    padding-left: 5px;
+    width: 250px;
+    background-color: #F7F6F2;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    padding: 12px 0px;
+    padding-left: 5px;
+    width: 250px;
+}
+
+textarea {
+    width: 100%;
+    background-color: #F7F6F2;
+}
+
+select {
+    color: #898989;
+}
+
+option {
+    padding: 10px 0px;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #B11D33;
+    color: white;
+    border: 1px solid #B11D33;
+    box-sizing: border-box;
+
+}
+
+.btn:hover {
+    background-color: #8B2130;
+}
+
+#participants {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  
+  #participants td, #participants th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #participants tr:nth-child(even){background-color: #f2f2f2;}
+
+  #participants>tr>:nth-child(1),
+  #participants>tr>:nth-child(6)
+  { font-weight: bold;}
+  
+  #participants tr:hover {background-color: #ddd;}
+  
+  #participants th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #8B2030;
+    color: white;
+    text-align: center;
+  }
+
+

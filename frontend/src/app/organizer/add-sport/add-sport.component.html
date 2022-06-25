@@ -1,0 +1,34 @@
+<div class="form-wrapper">
+    <form>
+        <div class="form-field">
+            Sport:<br>
+            <input type="text" name="sport" required [(ngModel)]="sport" ><br/>
+        </div>
+        <div class="form-field">
+            Discipline:<br>
+            <input type="text" name="discipline" [(ngModel)]="discipline">
+        </div>
+        <div class="form-field">
+            Sport type:<br>
+            <select name="type" [(ngModel)]="type">
+                <option value="" hidden selected>Select sport type...</option>
+                <option value="individual">Individual</option>
+                <option value="team">Team</option>
+            </select>
+        </div>
+        <div *ngIf='type == "team"'>
+            <div class="form-field">
+                Min number of players:<br>
+                <input type="number" name="min_players" required [(ngModel)]="min_players">
+            </div>
+            <div class="form-field">
+                Max number of players:<br>
+                <input type="number" name="max_players" [(ngModel)]="max_players">
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="ADD" (click)="addSport()">
+        </div>
+        <p style="color: red; text-align: center; padding-top: 20px;">{{message}}</p>
+    </form>
+</div>

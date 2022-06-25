@@ -1,0 +1,58 @@
+<div class="form-wrapper">
+    <form [formGroup]="register_form">
+        <div class="form-field">
+            First name:<br>
+            <input type="text" name="first-name" required formControlName="firstname"><br/>
+            <!-- <span style="color: red;" *ngIf="register_form.get('firstname').invalid">Field required</span> -->
+        </div>
+        <div class="form-field">
+            Last name:<br>
+            <input type="text" name="last-name" required formControlName="lastname">
+        </div>
+        <div class="form-field">
+            Email:<br>
+            <input type="email" name="email" required formControlName="email">
+        </div>
+        <div class="form-field">
+            Username:<br>
+            <input type="text" name="username" required formControlName="username">
+        </div>
+        <div class="form-field">
+            Password:<br>
+            <input type="password" name="password" required formControlName="password">
+        </div>
+        <div class="form-field">
+            Confirm password:<br>
+            <input type="password" name="confirm-password" required formControlName="password_repeat">
+        </div>
+        <div class="form-field">
+            Contry:<br>
+            <select name="type" formControlName="country_selected">
+                <option value="" hidden selected>Select country...</option>
+                <option value="other">Other</option>
+                <option *ngFor='let c of countries' value="{{c.name}}">{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-field" *ngIf="register_form.get('country_selected').value == 'other'">
+            Country name:<br>
+            <input type="text" name="country_name" formControlName="country_name">
+        </div>
+        <div class="form-field" *ngIf="register_form.get('country_selected').value == 'other'">
+            Country flag:<br>
+            <input type="file" (change)="imageAdded($event)">
+        </div>
+        <div class="form-field">
+            Type:<br>
+            <select name="type" formControlName="type">
+                <option value="" hidden selected>Choose type...</option>
+                <option value="leader">Leader</option>
+                <option value="delegate">Delegate</option>
+            </select>
+        </div>
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="REGISTER" (click)="register()">
+        </div>
+    </form>
+    
+</div>
+<p style="color: red; text-align: center; padding: 20px 20px;">{{message}}</p>

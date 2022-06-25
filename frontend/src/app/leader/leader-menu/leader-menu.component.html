@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span style="color:#676767" class="logo"></span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="menu-icon" aria-label="" (click)="sidenav.toggle()">
+        <mat-icon [ngStyle]="{'color':'#676767'}">menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container autosize>
+    <mat-sidenav #sidenav fixedInViewport="true" mode="push" position="end">
+      <div id="sidenav">
+        <button mat-icon-button class="menu-icon" aria-label="" (click)="sidenav.toggle()">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button mat-button routerLink="add-participant" routerLinkActive="active">Add participant</button>
+        <button mat-button (click)="logout()">Logout</button>
+      </div>
+    </mat-sidenav>
+    <!-- <mat-sidenav-content>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content> -->
+  </mat-sidenav-container>
+  
+

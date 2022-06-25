@@ -1,0 +1,118 @@
+<div class="form-wrapper">
+    <form>
+        <div class="form-field">
+            Sport:<br>
+            <select name="sport" [(ngModel)]="sport" (change)="loadDisciplines()">
+                <option value="" hidden selected>Select sport..</option>
+                <option *ngFor='let sport of allSports' value="{{sport.name}}">{{sport.name}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Discipline:<br>
+            <select name="discipline" [(ngModel)]="discipline" (change)="loadParticipants()">
+                <option value="" hidden selected>Select discipline..</option>
+                <option *ngFor='let d of disciplines' value="{{d.discipline}}">{{d.discipline}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Gender:<br>
+            <input type="radio" name="gender" value="male" [(ngModel)]="gender" (change)="loadParticipants()"> Male
+            <input type="radio" name="gender" value="female" [(ngModel)]="gender" (change)="loadParticipants()"> Female
+        </div>
+        <div class="form-field">
+            Start date:<br>
+            <input type="date" name="start-date" [(ngModel)]="startDate">
+        </div>
+        <div class="form-field">
+            End date:<br>
+            <input type="date" name="end-date" [(ngModel)]="endDate">
+        </div>
+        <div class="form-field">
+            Locations:<br>
+            <select name="locations" [(ngModel)]="locations" multiple>
+                <option value="" hidden selected>Select locations...</option>
+                <option *ngFor='let loc of selectLocations' value='{{loc}}'>{{loc}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Delegates:<br>
+            <select name="delegates" [(ngModel)]="delegates" multiple>
+                <option value="" hidden selected>Add one or more delegates..</option>
+                <option *ngFor='let d of allDelegates' value='{{d._id}}'>{{d.firstname}} {{d.lastname}}
+                </option>
+            </select>
+            <!-- {{delegates}} -->
+        </div>
+        <div class="format-line"></div>
+        <div class="form-field">
+            Competition type:<br>
+            <select name="type" [(ngModel)]="type">
+                <option value="" hidden selected>Select competition type...</option>
+                <option value="all">All at once</option>
+                <option value="one-on-one">One on one</option>
+            </select>
+        </div>
+        <div *ngIf='type == "all"'>
+            <div class="form-field">
+                Result type:<br>
+                <select name="resultType" [(ngModel)]="resultType">
+                    <option value="" hidden selected>Select result type...</option>
+                    <option value="distance">Height</option>
+                    <option value="distance">Distance</option>
+                    <option value="time">Time</option>
+                    <option value="points">Points</option>
+                </select>
+            </div>
+            <div class="form-field">
+                Number of rounds:<br>
+                <input type="number" name="numRounds" [(ngModel)]="numRounds">
+            </div>
+            <div *ngIf='numRounds > 1'>
+                <div class="form-field">
+                    Ranking per round:<br>
+                    <select name="roundRanking" [(ngModel)]="roundRanking">
+                        <option value="" hidden selected>Select ranking type...</option>
+                        <option value="sumPoints">Sum points</option>
+                        <option value="bestResult">Best result</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-field">
+                Final ranking:<br>
+                <select name="finalRanking" [(ngModel)]="finalRanking">
+                    <option value="" hidden selected>Select ranking type...</option>
+                    <option value="sortMax">Maximum result</option>
+                    <option value="sortMin">Minimum result</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf='type == "one-on-one"'>
+            <div class="form-field">
+                Winner points:<br>
+                <input type="number" name="winnerPoints" [(ngModel)]="winnerPoints">
+            </div>
+            <div class="form-field">
+                Minimum number of players:<br>
+                <input type="number" name="minPlayers" [(ngModel)]="minPlayers">
+            </div>
+            <div class="form-field">
+                Maximum number of players:<br>
+                <input type="number" name="maxPlayers" [(ngModel)]="maxPlayers">
+            </div>
+        </div>
+        <div class="format-line"></div>
+        <div class="form-field">
+            Participants:<br>
+            <select name="participants" [(ngModel)]="participants" multiple>
+                <option value="" hidden selected>Add one or more participants..</option>
+                <option *ngFor='let p of allParticipants' value='{{p._id}}-{{p.firstname}} {{p.lastname}}'>
+                    {{p.firstname}} {{p.lastname}}</option>
+            </select>
+        </div>
+        <!-- {{participants}} -->
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="ADD" (click)="addCompetition()">
+        </div>
+        <p style="color: red; text-align: center; padding-top: 20px;">{{message}}</p>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+<table id="participants">
+    <tr>
+        <th>Country</th>
+        <th>Total</th>
+    </tr>
+    <tr *ngFor='let c of countries'>
+        <td><img src='{{c.image_path}}' width="20px" style="margin-right: 7px;"> {{c.name}}</td>
+        <td>{{c.total}}</td>
+    </tr>
+    <tr>
+        <td colspan="1">
+            <button mat-button (click)="prev()" disabled='{{start == 0}}'>
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </td>
+        <td colspan="1">
+            <button mat-button (click)="next()" disabled='{{end == countries.length}}'>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>

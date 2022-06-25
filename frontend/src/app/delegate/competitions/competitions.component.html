@@ -1,0 +1,91 @@
+<h1 style="text-align: center;">Competition Results</h1>
+<p *ngIf='competitions.length == 0' style="text-align: center;">No competitions.</p>
+<div *ngIf='c' >
+    <div class="line"></div>
+    <h2 style="text-align: center;">{{c.sport}}, {{c.discipline}}</h2>
+    <!-- <p style="text-align: center;">{{c.location}}: {{prettyDate(c.startDate)}}-{{prettyDate(c.endDate)}}</p> -->
+    <div class="form-wrapper" *ngIf='c.form.type=="all"'>
+        <form>
+            <div *ngIf='c.currentRound > 0 && c.hasSchedule'>
+                <div class="form-field">
+                    Participant:<br>
+                    <select name="participantId" [(ngModel)]="participantId" (change)='participantSelected(c)'>
+                        <option value="" hidden selected>Select participant...</option>
+                        <option *ngFor='let p of c.participants' value="{{p.id}}">{{p.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf='participant && participant.hasResult == false'>
+                    <div class="form-field">
+                        Result:<br>
+                        <input type="text" [(ngModel)]="result" name="result" placeholder="{{getResultType(c.form.resultType)}}">
+                    </div>
+                    <div style="text-align: center;">
+                        <input type="submit" class="btn" value="INPUT RESULT" (click)="inputResult(c)">
+                    </div>
+                </div>
+                <p *ngIf='participant && participant.hasResult'>Participant result saved.</p>
+            </div>
+            <div style="text-align: center;">
+                <input type="submit" class="btn" value="END COMPETITION" (click)="runFinalRanking(c)" *ngIf='c.currentRound == 0'>
+            </div>
+        </form>
+        <p *ngIf='c.hasSchedule == false && c.currentRound > 0'><a routerLink="/delegate/schedule">Set schedule</a></p>
+    </div>
+    <div class="form-wrapper" *ngIf='c.form.type=="one-on-one"'>
+            <div style="text-align: center;" *ngIf='c.groups.length == 0'>
+                <input type="submit" class="btn" value="START COMPETITION" (click)="startCompetition(c)">
+            </div>
+            <div *ngIf='c.hasSchedule == true'>
+            <form>
+                <div *ngIf='c.currentRound > 0 && c.groups.length > 0'>
+                    <div class="form-field">
+                        Groups:<br>
+                        <select name="selectedGroup" [(ngModel)]="selectedGroup" (change)='groupSelected(c)'>
+                            <option value="" hidden selected>Select group...</option>
+                            <option *ngFor='let g of c.groups; index as i' value="{{i}}">{{g.first.name}}-{{g.second.name}}</option>
+                        </select>
+                    </div>
+                    <!-- {{selectedGroup}} -->
+                    <div *ngIf='group && !group.hasResult'>
+                        <table>
+                            <tr>
+                                <td>{{group.first.name}}:</td>
+                                <td><input type="number" [(ngModel)]="firstResult" name="firstResult"></td>
+                            </tr>
+                            <tr>
+                                <td>{{group.second.name}}:</td>
+                                <td><input type="number" [(ngModel)]="secondResult" name="secondResult"></td>
+                            </tr>
+                        </table>
+                        <div style="text-align: center;">
+                            <input type="submit" class="btn" value="INPUT RESULT" (click)="inputGroupResult(c)">
+                        </div>
+                    </div>
+                    <p *ngIf='group && group.hasResult'>Group results saved.</p>
+                </div>
+            </form>
+        </div>
+        <p *ngIf='c.groups.length > 0 && c.hasSchedule == false && c.currentRound > 0'><a routerLink="/delegate/schedule">Set schedule</a></p>
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="END COMPETITION" (click)="runFinalRanking(c)" *ngIf='c.currentRound == 0'>
+        </div>
+    </div>
+    <p style="color:red; text-align: center;">{{message}}</p>
+    <table style="margin: 0 auto; width: 100%; text-align: center;">
+        <tr>
+            <td>
+                <button mat-button (click)="prev()" disabled='{{currIndex == 0}}' >
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </td>
+            <td>
+                <button mat-button (click)="next()" disabled='{{currIndex == competitions.length - 1}}'>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+<div class="line"></div>
+

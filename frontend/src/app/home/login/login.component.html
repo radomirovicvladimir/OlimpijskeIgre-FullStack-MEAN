@@ -1,0 +1,16 @@
+<div class="form-wrapper">
+    <form>
+        <div class="form-field">
+            Username:<br>
+            <input type="text" name="username" required [(ngModel)]="username">
+        </div>
+        <div class="form-field">
+            Password:<br>
+            <input type="password" name="password" required [(ngModel)]="password">
+        </div>
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="LOGIN" (click)="login()">
+        </div>
+        <p style="color: red; text-align: center; padding-top: 20px;">{{message}}</p>
+    </form>
+</div>

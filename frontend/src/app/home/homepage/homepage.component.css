@@ -1,0 +1,23 @@
+.homepage-heading {
+    width: 100%;
+    margin: auto;
+    margin-top: 20%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 150px;
+    display: block;
+}
+
+@media only screen and (max-width: 1120px) {
+    .homepage-heading {
+        font-size: 120px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .homepage-heading {
+        font-size: 100px;
+    }
+}

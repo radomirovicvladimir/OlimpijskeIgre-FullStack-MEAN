@@ -1,0 +1,91 @@
+<div class="form-wrapper">
+    <form>
+        <div class="form-field">
+            First Name and Last Name:<br>
+            <input type="text" name="full-name" [(ngModel)]="name">
+        </div>
+        <div class="form-field">
+            Contry:<br>
+            <select name="type" [(ngModel)]="country">
+                <option value="" hidden selected>Select country...</option>
+                <option value="" >All</option>
+                <option *ngFor='let c of countries'>{{c.name}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Sport:<br>
+            <select name="sport" [(ngModel)]="sport" (change)="loadDisciplines()">
+                <option value="" hidden selected>Select sport..</option>
+                <option value="" >All</option>
+                <option *ngFor='let sport of allSports' value="{{sport.name}}">{{sport.name}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Discipline:<br>
+            <select name="discipline" [(ngModel)]="discipline">
+                <option value="" hidden selected>Select discipline..</option>
+                <option value="" >All</option>
+                <option *ngFor='let d of disciplines' value="{{d.discipline}}">{{d.discipline}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            Gender:<br>
+            <input type="radio" name="gender" value="male" [(ngModel)]="gender"> Male
+            <input type="radio" name="gender" value="female" [(ngModel)]="gender"> Female
+        </div>
+        <div class="form-field">
+            Won medals:
+            <input type="checkbox" name="wonMedals" [(ngModel)]="wonMedals">
+        </div>
+        <div style="text-align: center;">
+            <input type="submit" class="btn" value="SEARCH" (click)="search()">
+        </div>
+        <p style="color: red; text-align: center; padding-top: 20px;">{{message}}</p>
+    </form>
+</div>
+
+<div class="form-wrapper">
+    <form>
+        Pagination Size:<br>
+            <select name="size" [(ngModel)]="selectSize" (change)='changeSize()'>
+                <option value="10" >10</option>
+                <option value="20" >20</option>
+                <option value="50" >50</option>
+                <option value="100" >100</option>
+            </select>
+    </form>
+</div>
+
+<div class="search-result">
+    <table id="participants" *ngIf='participants.length > 0'>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Country</th>
+            <th>Sport</th>
+            <th>Disciplines</th>
+            <th>Medals</th>
+        </tr>
+        <tr *ngFor='let p of participantList'>
+            <td>{{p.firstname}} {{p.lastname}}</td>
+            <td>{{p.gender}}</td>
+            <td>{{p.country}}</td>
+            <td>{{p.sport}}</td>
+            <td>{{p.disciplines}}</td>
+            <td>{{p.medals.gold + p.medals.silver + p.medals.bronze}}</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button mat-button (click)="prev()" disabled='{{start == 0}}'>
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </td>
+            <td colspan="3">
+                <button mat-button (click)="next()" disabled='{{end == participants.length}}'>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <h3 style="color: red; text-align: center; padding-top: 20px;" *ngIf='participants.length == 0'>No results.</h3>
+</div>

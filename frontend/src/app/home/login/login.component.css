@@ -1,0 +1,49 @@
+:host {
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-top: 15%;
+    padding-top: 50px;
+    padding-bottom: 80px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form-field {
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 5px 0;
+    color: #898989;
+}
+
+input {
+    padding: 12px 5px;
+    width: 250px;
+    background-color: #F7F6F2;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #B11D33;
+    color: white;
+    border: 1px solid #B11D33;
+    box-sizing: border-box;
+
+}
+
+.btn:hover {
+    background-color: #8B2130;
+}
+
+
+

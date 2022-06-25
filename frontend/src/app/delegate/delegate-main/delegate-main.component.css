@@ -1,0 +1,26 @@
+main {
+    width: 50%;
+    margin: auto;
+    padding-top: 20px;
+}
+
+:host {
+    display: block;
+    height: 100%;
+    width: auto;
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../../assets/pexels-wallace-chuck-2820906.jpg");
+    background-size: cover;
+    overflow-x: scroll;
+}
+
+@media only screen and (max-width: 1120px) {
+    main {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    main {
+        width: 100%;
+    }
+}
